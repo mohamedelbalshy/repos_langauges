@@ -24,7 +24,11 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+REST Microservice that list the languages That used by 10,000 starts repos on Github.
+Every Language has:
+
+- numberOfRepos: Number
+- repos: array of repos
 
 ## Installation
 
@@ -58,16 +62,14 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Author - [Mohamed Elbalshy](https://github.com/mohamedelbalshy)
 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## Languages Routes:
+
+- `localhost:3000/languages`
