@@ -20,14 +20,16 @@ export class LanguagesService {
     );
 
     // convert to promise
-
     const responsePromise = await response.toPromise();
+
     // extract the data from the response
-    const reposResponse = responsePromise.data;
-    return reposResponse.items;
+    const { data } = responsePromise;
+    // return only the array of repos
+    return data.items;
   }
 
   async getLanguages() {
+    // get the repos data
     const repos = await this.getRepos();
 
     // declare languages array
