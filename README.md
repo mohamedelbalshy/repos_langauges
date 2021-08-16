@@ -29,6 +29,7 @@ Every Language has:
 
 - numberOfRepos: Number
 - repos: array of repos
+- name: String
 
 ## Installation
 
