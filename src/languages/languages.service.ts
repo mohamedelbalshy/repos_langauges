@@ -17,7 +17,7 @@ export class LanguagesService {
           incomplete_results: Boolean;
         }>
       > = this.httpService.get(
-        `https://api.github.com/search/repositories?q=created:%3E2021-01-01&sort=stars&order=desc`,
+        `https://api.github.com/search/repositories?q=created:%3E2020-01-01&sort=stars&order=desc`,
       );
 
       // convert to promise
