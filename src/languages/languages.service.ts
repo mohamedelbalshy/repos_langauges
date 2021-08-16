@@ -1,5 +1,5 @@
 import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
 import { Language } from './language';
@@ -9,23 +9,30 @@ import { Repo } from './repo';
 export class LanguagesService {
   constructor(private readonly httpService: HttpService) {}
   private async getRepos() {
-    const response: Observable<
-      AxiosResponse<{
-        items: any[];
-        total_count: Number;
-        incomplete_results: Boolean;
-      }>
-    > = this.httpService.get(
-      `https://api.github.com/search/repositories?q=stars:%3E10000&sort=stars&order=desc`,
-    );
+    try {
+      const response: Observable<
+        AxiosResponse<{
+          items: any[];
+          total_count: Number;
+          incomplete_results: Boolean;
+        }>
+      > = this.httpService.get(
+        `https://api.github.com/search/repositories?q=stars:%3E10000&sort=stars&order=desc`,
+      );
 
-    // convert to promise
-    const responsePromise = await response.toPromise();
+      // convert to promise
+      const responsePromise = await response.toPromise();
 
-    // extract the data from the response
-    const { data } = responsePromise;
-    // return only the array of repos
-    return data.items;
+      // extract the data from the response
+      const { data } = responsePromise;
+      // return only the array of repos
+      return data.items;
+    } catch (error) {
+      console.log(error);
+      throw new InternalServerErrorException(
+        'Error when trying to fetch the repos from Github',
+      );
+    }
   }
 
   async getLanguages() {
